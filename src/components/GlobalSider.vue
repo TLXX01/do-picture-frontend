@@ -17,7 +17,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, h, ref, watchEffect } from 'vue'
-import { PictureOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { PictureOutlined, TeamOutlined, UserOutlined, CloudUploadOutlined } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 import { useLoginUserStore } from '@/stores/useLoginUserStore.ts'
 import { SPACE_TYPE_ENUM } from '@/constants/space.ts'
@@ -37,6 +37,11 @@ const fixedMenuItems = [
     key: '/my_space',
     label: '我的空间',
     icon: () => h(UserOutlined),
+  },
+  {
+    key: '/my_public',
+    label: '我的发布',
+    icon: () => h(CloudUploadOutlined),
   },
   {
     key: '/add_space?type=' + SPACE_TYPE_ENUM.TEAM,

@@ -29,6 +29,12 @@ declare namespace API {
     message?: string
   }
 
+  type BaseResponseListInt_ = {
+    code?: number
+    data?: number[]
+    message?: string
+  }
+
   type BaseResponseListPictureVO_ = {
     code?: number
     data?: PictureVO[]
@@ -228,6 +234,11 @@ declare namespace API {
   type getUserByIdUsingGETParams = {
     /** id */
     id?: number
+  }
+
+  type getUserSignInRecordUsingGETParams = {
+    /** year */
+    year?: number
   }
 
   type getUserVOByIdUsingGETParams = {
@@ -438,6 +449,7 @@ declare namespace API {
     picScale?: number
     picSize?: number
     picWidth?: number
+    reviewStatus?: number
     spaceId?: number
     tags?: string[]
     thumbnailUrl?: string
@@ -640,6 +652,20 @@ declare namespace API {
   type testDownloadFileUsingGETParams = {
     /** filepath */
     filepath?: string
+  }
+
+  type UpdatePasswordRequest = {
+    checkPassword?: string
+    newPassword?: string
+    userPassword?: string
+  }
+
+  type uploadAvatarUsingPOSTParams = {
+    id?: number
+    userAvatar?: string
+    userName?: string
+    userProfile?: string
+    userRole?: string
   }
 
   type uploadPictureUsingPOSTParams = {

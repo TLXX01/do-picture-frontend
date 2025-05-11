@@ -30,6 +30,7 @@
     </div>
     <!-- 图片列表 -->
     <PictureList :dataList="dataList" :loading="loading" />
+
     <!-- 分页 -->
     <a-pagination
       style="text-align: right"
@@ -38,17 +39,17 @@
       :total="total"
       @change="onPageChange"
     />
+    <a-back-top />
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
 import {
-  listPictureTagCategoryUsingGet,
-  listPictureVoByPageUsingPost,
+  listPictureTagCategoryUsingGet, listPictureVoByPageWithCacheUsingPost,
 } from '@/api/pictureController.ts'
 import { message } from 'ant-design-vue'
-import PictureList from '@/components/PictureList.vue' // 定义数据
+import PictureList from '@/components/PictureList.vue'
 
 // 定义数据
 const dataList = ref<API.PictureVO[]>([])
@@ -80,7 +81,7 @@ const fetchData = async () => {
       params.tags.push(tagList.value[index])
     }
   })
-  const res = await listPictureVoByPageUsingPost(params)
+  const res = await listPictureVoByPageWithCacheUsingPost(params)
   if (res.data.code === 0 && res.data.data) {
     dataList.value = res.data.data.records ?? []
     total.value = res.data.data.total ?? 0

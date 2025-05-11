@@ -21,7 +21,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   title: "分享图片",
-  link: 'https://www.codefather.cn'
+  link: 'https://github.com/TLXX01?tab=repositories'
 })
 
 // 是否可见

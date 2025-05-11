@@ -32,7 +32,9 @@
         >
           空间分析
         </a-button>
-        <a-button v-if="canEditPicture" :icon="h(EditOutlined)" @click="doBatchEdit"> 批量编辑</a-button>
+        <a-button v-if="canEditPicture" :icon="h(EditOutlined)" @click="doBatchEdit">
+          批量编辑</a-button
+        >
         <a-tooltip
           :title="`占用空间 ${formatSize(space.totalSize)} / ${formatSize(space.maxSize)}`"
         >
@@ -83,7 +85,7 @@ import { computed, h, onMounted, ref, watch } from 'vue'
 import { getSpaceVoByIdUsingGet } from '@/api/spaceController.ts'
 import { message } from 'ant-design-vue'
 import {
-  listPictureVoByPageUsingPost,
+  listPictureVoByPageWithCacheUsingPost,
   searchPictureByColorUsingPost,
 } from '@/api/pictureController.ts'
 import { formatSize } from '@/utils'
@@ -158,7 +160,7 @@ const fetchData = async () => {
     spaceId: props.id,
     ...searchParams.value,
   }
-  const res = await listPictureVoByPageUsingPost(params)
+  const res = await listPictureVoByPageWithCacheUsingPost({ params })
   if (res.data.code === 0 && res.data.data) {
     dataList.value = res.data.data.records ?? []
     total.value = res.data.data.total ?? 0
@@ -198,7 +200,7 @@ const onColorChange = async (color: string) => {
   loading.value = true
   const res = await searchPictureByColorUsingPost({
     picColor: color,
-    spaceId: props.id,
+    spaceId: props.id as number,
   })
   if (res.data.code === 0 && res.data.data) {
     const data = res.data.data ?? []

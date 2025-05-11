@@ -1,5 +1,6 @@
 <template>
   <div id="basicLayout">
+    <GlobalLoading :show="isRouteLoading" />
     <a-layout style="min-height: 100vh">
       <a-layout-header class="header">
         <GlobalHeader />
@@ -11,7 +12,7 @@
         </a-layout-content>
       </a-layout>
       <a-layout-footer class="footer">
-        <a href="https://www.codefather.cn" target="_blank"> 鲸鱼 by 璟御-YCLM </a>
+        <a href="https://github.com/TLXX01?tab=repositories" target="_blank"> 鲸鱼 by TLXX01-YCLM </a>
       </a-layout-footer>
     </a-layout>
   </div>
@@ -20,6 +21,38 @@
 <script setup lang="ts">
 import GlobalHeader from '@/components/GlobalHeader.vue'
 import GlobalSider from "@/components/GlobalSider.vue";
+import GlobalLoading from "@/components/GlobalLoading.vue";
+import {onBeforeUnmount, ref} from "vue";
+import {useRouter} from "vue-router";
+
+const router = useRouter()
+const isRouteLoading = ref(false)
+let loadingTimeout: number | null = null
+
+// 路由切换时显示加载状态
+router.beforeEach(() => {
+  // 设置延迟显示，避免快速加载时的闪烁
+  loadingTimeout = setTimeout(() => {
+    isRouteLoading.value = true
+  }, 200)
+  return true
+})
+
+router.afterEach(() => {
+  // 清除延时器并隐藏加载状态
+  if (loadingTimeout) {
+    clearTimeout(loadingTimeout)
+  }
+  isRouteLoading.value = false
+})
+
+// 组件销毁前清理
+onBeforeUnmount(() => {
+  if (loadingTimeout) {
+    clearTimeout(loadingTimeout)
+  }
+})
+
 </script>
 
 <style scoped>

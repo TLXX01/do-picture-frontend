@@ -3,7 +3,13 @@
     <a-row :gutter="[16, 16]">
       <!-- 图片预览 -->
       <a-col :sm="24" :md="16" :xl="18">
-        <a-card title="图片预览">
+        <a-page-header
+          style="border: 1px solid rgb(235, 237, 240)"
+          title="图片预览"
+          :sub-title="picture.name"
+          @back="() => $router.go(-1)"
+        />
+        <a-card>
           <a-image :src="picture.url" style="max-height: 600px; object-fit: contain" />
         </a-card>
       </a-col>

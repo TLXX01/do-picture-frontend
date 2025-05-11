@@ -1,5 +1,4 @@
 <template>
-  <!-- @author 程序员鱼皮 <a href="https://www.codefather.cn">编程导航原创项目</a> -->
   <div id="vipExchangePage">
     <h2 style="margin-bottom: 16px">会员码兑换</h2>
     <!-- 兑换码表单 -->

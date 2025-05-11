@@ -16,6 +16,7 @@ import SpaceAnalyzePage from '@/pages/space/SpaceAnalyzePage.vue'
 import SpaceUserManagePage from '@/pages/admin/SpaceUserManagePage.vue'
 import UserExchangeVipPage from '@/pages/UserExchangeVipPage.vue'
 import UserCenterPage from "@/pages/user/UserCenterPage.vue";
+import UserPublicPage from "@/pages/user/UserPublicPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -86,6 +87,11 @@ const router = createRouter({
       path: '/my_space',
       name: '我的空间',
       component: MySpacePage,
+    },
+    {
+      path: '/my_public',
+      name: '我的发布',
+      component: UserPublicPage,
     },
     {
       path: '/space/:id',

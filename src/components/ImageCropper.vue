@@ -59,7 +59,7 @@ interface Props {
   onSuccess?: (newPicture: API.PictureVO) => void
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
 // 是否为团队空间
 const isTeamSpace = computed(() => {
